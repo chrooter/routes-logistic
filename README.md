@@ -1,1 +1,1 @@
-# routes-logistic
+Для корректной работы нужно получить Google API Key (https://console.developers.google.com) и указать его в файле конфига в корне проекта (config-dev.php)
