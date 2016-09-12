@@ -33,19 +33,22 @@ class Route {
      * Метод вернёт HTML маршрутов для отображения в таблице
      *
      * @param [] $routes
+     * @param [] $user_routes
      * @return string
      */
-    public function getRoutesForTable($routes) {
+    public function getRoutesForTable($routes, $user_routes) {
         /** @var string $content */
         $content = '';
 
         /** @var [] $route */
         foreach ($routes as $route) {
+            /** @var string $map */
+            $map = ' (<a href="" class="show-map" data-routes="'.$user_routes[0].'|'.$route[1].'|'.$route[2].'|'.$user_routes[1].'">показать на карте</a>)';
             $content .= '
             <tr class="'.$route[4].'">
-                <td>'.$route[0].'</td>
-                <td>'.$route[1].' - '.$route[2].'</td>
-                <td>'.$route[3].' км</td>
+                <td><p>'.$route[0].'</p></td>
+                <td><p>'.$route[1].' - '.$route[2].$map.'</p></td>
+                <td><p>'.$route[3].' км</p></td>
             </tr>
             ';
         }

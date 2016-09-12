@@ -42,9 +42,12 @@ $find_count_2 = null;
 $route_1_distance = 30;
 /** @var int $route_2_distance */
 $route_2_distance = 30;
+/** @var [] $route_for_js */
+$route_for_js = [];
 
 if (isset($_POST['route-1-distance'])) {
 	$route_1_active = 'bg-info';
+	$route_for_js = [User::USER_POINT_A, User::USER_POINT_B];
 
 	/** @var int $route_1_distance */
 	$route_1_distance = (int) $_POST['route-1-distance'];
@@ -56,6 +59,7 @@ if (isset($_POST['route-1-distance'])) {
 
 if (isset($_POST['route-2-distance'])) {
 	$route_2_active = 'bg-info';
+	$route_for_js = [User::USER_POINT_B, User::USER_POINT_A];
 
 	/** @var int $route_2_distance */
 	$route_2_distance = (int) $_POST['route-2-distance'];
@@ -87,7 +91,7 @@ if (isset($_POST['route-2-distance'])) {
 					
 					<div class="<?= $route_1_active ?>" style="padding: 10px 0;">
 						<h5>1. <?= User::USER_POINT_A ?> - <?= User::USER_POINT_B ?> (<strong><?= User::USER_ROUTE_KM ?></strong> км)</h5>
-						<form action="/" method="post" class="form-inline">
+						<form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" class="form-inline">
 							<div class="form-group">
 								<label for="route-1-distance">Не дальше чем (километров):</label>
 								<input type="text" class="form-control" name="route-1-distance" id="route-1-distance" value="<?= $route_1_distance ?>" size="5">
@@ -99,7 +103,7 @@ if (isset($_POST['route-2-distance'])) {
 					
 					<div class="<?= $route_2_active ?>" style="padding: 10px 0;">
 						<h5>2. <?= User::USER_POINT_B ?> - <?= User::USER_POINT_A ?> (<strong><?= User::USER_ROUTE_KM ?></strong> км)</h5>
-						<form action="/" method="post" class="form-inline">
+						<form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" class="form-inline">
 							<div class="form-group">
 								<label for="route-2-distance">Не дальше чем (километров):</label>
 								<input type="text" class="form-control" name="route-2-distance" id="route-2-distance" value="<?= $route_2_distance ?>" size="5">
@@ -113,7 +117,7 @@ if (isset($_POST['route-2-distance'])) {
 				<div class="col-md-6">
 					<h3>Создание запросов</h3>
 					<p>Можно создать 50 случайных запросов на перевозку грузов</p>
-					<form action="/" method="post">
+					<form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
 						<button type="submit" name="new-request" class="btn btn-default">Создать новые запросы</button>
 					</form>
 				</div>
@@ -130,12 +134,14 @@ if (isset($_POST['route-2-distance'])) {
 				<tbody>
 					<?php
 					if ($routes) {
-						echo $route->getRoutesForTable($routes);
+						echo $route->getRoutesForTable($routes, $route_for_js);
 					}
 					?>
 				</tbody>
 			</table>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="//api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/scripts.js"></script>
 	</body>
 </html>
