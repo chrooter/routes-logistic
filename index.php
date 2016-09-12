@@ -39,9 +39,9 @@ $find_count_1 = null;
 /** @var null|int $find_count_2 */
 $find_count_2 = null;
 /** @var int $route_1_distance */
-$route_1_distance = 30;
+$route_1_distance = 600;
 /** @var int $route_2_distance */
-$route_2_distance = 30;
+$route_2_distance = 600;
 /** @var [] $route_for_js */
 $route_for_js = [];
 

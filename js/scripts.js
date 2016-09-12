@@ -35,7 +35,7 @@ function init () {
 
 				var routeMap = new ymaps.Map('map', {
 					center:   center,
-					zoom:     8,
+					zoom:     4,
 					controls: [removePointsButton]
 				}, {
 					buttonMaxWidth: 300

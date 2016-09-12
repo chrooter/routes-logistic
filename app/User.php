@@ -4,10 +4,10 @@ namespace app;
 class User {
 
     /** Расстояние маршрутов пользователя */
-    const USER_ROUTE_KM = 74.7;
+    const USER_ROUTE_KM = 2604;
 
     const USER_POINT_A = 'Москва';
-    const USER_POINT_B = 'Сергиев Посад, Московская область';
+    const USER_POINT_B = 'Ханты-Мансийск';
 
     /** @var  string */
     private $start_point;
@@ -42,6 +42,7 @@ class User {
      * @return array
      */
     public function findRoutes($routes, $api_key) {
+        $api_key = 'AIzaSyDKd0u_vio-Efo7hy6XecVuQbSxYBuH-ks';
         /** @var int $success_route */
         $success_route = 0;
 
