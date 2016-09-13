@@ -44,10 +44,23 @@ class Route {
         foreach ($routes as $route) {
             /** @var string $map */
             $map = ' (<a href="" class="show-map" data-routes="'.$user_routes[0].'|'.$route[1].'|'.$route[2].'|'.$user_routes[1].'">показать на карте</a>)';
+
+            /** @var string $distance_diff */
+            $distance_diff = '';
+            if ($route[5]) {
+                /** @var string $distance_status */
+                $distance_status = 'text-danger';
+                if ($route[4] == 'success') {
+                    $distance_status = 'text-success';
+                }
+
+                $distance_diff = ' <span class="'.$distance_status.'"><strong>[ +'.$route[5].' км ]</strong></span>';
+            }
+
             $content .= '
             <tr class="'.$route[4].'">
                 <td><p>'.$route[0].'</p></td>
-                <td><p>'.$route[1].' - '.$route[2].$map.'</p></td>
+                <td><p>'.$route[1].' - '.$route[2].$distance_diff.$map.'</p></td>
                 <td><p>'.$route[3].' км</p></td>
             </tr>
             ';

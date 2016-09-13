@@ -61,6 +61,9 @@ class User {
                 $distance_p2 = Route::getDistance($content->rows[1]->elements[1]->distance->text);
                 /** @var float $distance дистанция всего маршрута */
                 $distance = $distance_p1 + $route[3] + $distance_p2;
+                /** @var float|int $diff_distance */
+                $diff_distance = $distance - self::USER_ROUTE_KM;
+                $route[5] = $diff_distance;
 
                 // Если суммарная дистанция больше расстояния, которое готов проехать пользователь,
                 // то такой маршрут не подходит
